@@ -354,7 +354,9 @@ module CommAggregation {
         assert(lArr.locale.id == here.id);
       }
       const byte_size = size:c_size_t * c_sizeof(elemType);
-      CommPrimitives.PUT(c_ptrTo(lArr[0]), loc, data, byte_size);
+      const ref reflArr = lArr[0];
+      ref refData = data;
+      CommPrimitives.PUT(reflArr, loc, refData, byte_size);
     }
 
     proc PUT(lArr: c_ptr(elemType), size: int) {
@@ -362,7 +364,9 @@ module CommAggregation {
         assert(size <= this.size);
       }
       const byte_size = size:c_size_t * c_sizeof(elemType);
-      CommPrimitives.PUT(lArr, loc, data, byte_size);
+      const ref reflArr = lArr.deref();
+      ref refData = data;
+      CommPrimitives.PUT(reflArr, loc, refData, byte_size);
     }
 
     proc GET(lArr: [] elemType, size: int) where lArr.isDefaultRectangular() {
@@ -373,7 +377,9 @@ module CommAggregation {
         assert(lArr.locale.id == here.id);
       }
       const byte_size = size:c_size_t * c_sizeof(elemType);
-      CommPrimitives.GET(c_ptrTo(lArr[0]), loc, data, byte_size);
+      ref reflArr = lArr[0];
+      const ref refData = data;
+      CommPrimitives.GET(reflArr, loc, refData, byte_size);
     }
 
     proc deinit() {
