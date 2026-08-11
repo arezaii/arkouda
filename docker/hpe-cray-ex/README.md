@@ -40,8 +40,7 @@ scripts/
   build-arkouda.sh                      # builds Arkouda on the Chapel base image
   convert-to-sif.sh                     # OCI image -> Apptainer .sif
   setup-e4s-cl-profile.sh               # HPC library-forwarding helper (e4s-cl)
-  generate-e4s-cl-profile.sh            # detects HPC libs for e4s-cl profiles
-  lib-docker-cmd.sh                     # shared docker/podman auto-detect (sourced, not run)
+  generate-e4s-cl-profile.sh            # detects HPC libs for e4s-cl profiles  
   chapel-start / chapel-test-compile
 patches/                                # patches applied during the Arkouda build
 docs/                                   # full build/usage guide
